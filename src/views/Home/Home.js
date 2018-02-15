@@ -11,7 +11,8 @@ import { connect } from 'react-redux';
 //-----------------------------------------------------------------------------------------
 
 import './Home.css';
-import WorkyardLogo from '../assets/images/workyard-logo.svg';
+import { Modal } from '../';
+import WorkyardLogo from '../../assets/images/workyard-logo.svg';
 
 //-----------------------------------------------------------------------------------------
 //------------------------------------ Home Component -------------------------------------
@@ -26,16 +27,19 @@ class Home extends Component {
   
   constructor(props) {
     super(props);
-    this.state = {}
-    this.handlerExample = this.handlerExample.bind(this);
+    this.state = {
+      isModalOpened: false
+    };
   }
 
   //-------------------------------------------------------------------------
   //------------------------- Handler methods -------------------------------
   //-------------------------------------------------------------------------
 
-  handlerExample() {
-    console.log("Handler Example Running!");
+  toggleModal = () => {
+    this.setState(prevState => ({
+      isModalOpened: !prevState.isModalOpened
+    }));
   }
 
   //-------------------------------------------------------------------------
@@ -43,9 +47,6 @@ class Home extends Component {
   //-------------------------------------------------------------------------
   
   render() {
-
-    const { handlerExample } = this;
-
     return (
       <div className="home home-container">
         <div className="home-header">
@@ -53,8 +54,9 @@ class Home extends Component {
         </div>
         <div className="home-main-section">
           <h1 className="home-main-section-title">Post a project</h1>
-          <button className="home-main-section-button" onClick={handlerExample}>Create Project</button>
+          <button className="home-main-section-button" onClick={this.toggleModal}>Create Project</button>
         </div>
+        <Modal toggleModal={this.toggleModal} isModalOpened={this.state.isModalOpened}>dsadsa</Modal>
       </div>
     );
   }

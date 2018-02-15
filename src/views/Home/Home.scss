@@ -1,21 +1,21 @@
 @font-face {
   font-family: 'GT-Walsheim';
   src: local('GT-Walsheim-Regular'),
-    url(../assets/fonts/GT-Walsheim-Regular.woff) format('woff');
+    url(../../assets/fonts/GT-Walsheim-Regular.woff) format('woff');
   font-weight: normal;
 }
 
 @font-face {
   font-family: 'GT-Walsheim';
   src: local('GT-Walsheim-Bold'),
-    url(../assets/fonts/GT-Walsheim-Bold.woff) format('woff');
+    url(../../assets/fonts/GT-Walsheim-Bold.woff) format('woff');
   font-weight: bold;
 }
 
 @font-face {
   font-family: 'GT-Walsheim';
   src: local('GT-Walsheim-Light'),
-    url(../assets/fonts/GT-Walsheim-Light.woff) format('woff');
+    url(../../assets/fonts/GT-Walsheim-Light.woff) format('woff');
   font-weight: lighter;
 }
 
@@ -45,6 +45,7 @@ body {
       background-color: white;
       border: 1px solid white;
       border-radius: 8px;
+      cursor: pointer;
       color: #26cac8;
       font-size: 18px;
       letter-spacing: 1px;

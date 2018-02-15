@@ -16,7 +16,7 @@ import { ConnectedRouter, routerReducer, routerMiddleware } from 'react-router-r
 //-----------------------------------------------------------------------------------------
 
 import registerServiceWorker from './registerServiceWorker';
-import Home from './views/Home';
+import { Home } from './views';
 import * as reducers from './reducers';
 
 //-----------------------------------------------------------------------------------------
@@ -51,7 +51,7 @@ ReactDOM.render(
       </div>
     </ConnectedRouter>
   </Provider>,
-  document.getElementById('root')
+  document.getElementById('app-root')
 )
 
 registerServiceWorker();
