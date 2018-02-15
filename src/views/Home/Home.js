@@ -57,7 +57,7 @@ class Home extends Component {
           <button className="home-main-section-button" onClick={this.toggleModal}>Create Project</button>
         </div>
         <Modal toggleModal={this.toggleModal} isModalOpened={this.state.isModalOpened}>
-          <div className="home-project-form"><ProjectForm /></div>
+          <ProjectForm />
         </Modal>
       </div>
     );

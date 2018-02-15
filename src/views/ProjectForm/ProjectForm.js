@@ -4,6 +4,8 @@ import { MenuItem } from 'material-ui/Menu';
 import { InputLabel } from 'material-ui/Input';
 import { FormControl } from 'material-ui/Form';
 import TextField from 'material-ui/TextField';
+import Button from 'material-ui/Button';
+import { AddressAutoComplete } from '../';
 import { PROJECT_TYPES, CONTRACT_VALUES } from '../../util/Constants';
 import './ProjectForm.css';
 
@@ -67,6 +69,12 @@ class ProjectForm extends React.Component {
               ))}
             </Select>
           </FormControl>
+          <FormControl className="project-form-field">
+            <AddressAutoComplete />
+          </FormControl>
+          <Button variant="raised" color="primary">
+            Primary
+          </Button>
         </form>
       </div>
     );

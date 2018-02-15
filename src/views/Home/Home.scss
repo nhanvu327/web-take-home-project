@@ -22,8 +22,13 @@
 body {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
   font-family: 'GT-Walsheim';
   background-color: #26cac8;
+
+  * {
+    box-sizing: inherit;
+  }
 }
 
 .home {
@@ -53,8 +58,4 @@ body {
     }
   }
 
-  &-project-form {
-    width: 430px;
-    height: 531px;
-  }
 }

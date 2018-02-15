@@ -59,6 +59,8 @@ const openUploadCareDialog = handleUploadedImages => {
   });
 }
 
+const 
+
 
 export {
   openUploadCareDialog
