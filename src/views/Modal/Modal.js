@@ -10,12 +10,18 @@ class Modal extends React.Component {
 
   render() {
     const { isModalOpened, toggleModal } = this.props;
-    const ModalForm =
+    const ModalForm = (
       <div className="modal modal-overlay" onClick={toggleModal}>
-        <div className="modal-box">{this.props.children}</div>
-      </div>;
+        <div className="modal-box" onClick={e => e.stopPropagation()}>
+          {this.props.children}
+        </div>
+      </div>
+    );
     if (isModalOpened) {
-      return ReactDOM.createPortal(ModalForm, document.getElementById('modal-root'));
+      return ReactDOM.createPortal(
+        ModalForm,
+        document.getElementById('modal-root')
+      );
     }
     return null;
   }
