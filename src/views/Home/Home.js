@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 //-----------------------------------------------------------------------------------------
 
 import './Home.css';
-import { Modal } from '../';
+import { Modal, ProjectForm } from '../';
 import WorkyardLogo from '../../assets/images/workyard-logo.svg';
 
 //-----------------------------------------------------------------------------------------
@@ -56,7 +56,11 @@ class Home extends Component {
           <h1 className="home-main-section-title">Post a project</h1>
           <button className="home-main-section-button" onClick={this.toggleModal}>Create Project</button>
         </div>
-        <Modal toggleModal={this.toggleModal} isModalOpened={this.state.isModalOpened}>dsadsa</Modal>
+        <Modal toggleModal={this.toggleModal} isModalOpened={this.state.isModalOpened}>
+          <div className="home-project-form">
+            <ProjectForm />
+          </div>
+        </Modal>
       </div>
     );
   }
