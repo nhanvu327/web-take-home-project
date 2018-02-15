@@ -47,10 +47,14 @@ class Home extends Component {
     const { handlerExample } = this;
 
     return (
-      <div className="home-container">
-        <img src={WorkyardLogo} alt="Workyard logo" className="workyard-logo"/>
-        <h1>Post a project</h1>
-        <button onClick={handlerExample}>Create Project</button>
+      <div className="home home-container">
+        <div className="home-header">
+          <img src={WorkyardLogo} alt="Workyard logo" className="workyard-logo" />
+        </div>
+        <div className="home-main-section">
+          <h1 className="home-main-section-title">Post a project</h1>
+          <button className="home-main-section-button" onClick={handlerExample}>Create Project</button>
+        </div>
       </div>
     );
   }

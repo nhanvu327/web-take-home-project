@@ -1,18 +1,21 @@
 @font-face {
   font-family: 'GT-Walsheim';
-  src: local('GT-Walsheim-Regular'), url(../assets/fonts/GT-Walsheim-Regular.woff) format('woff');
+  src: local('GT-Walsheim-Regular'),
+    url(../assets/fonts/GT-Walsheim-Regular.woff) format('woff');
   font-weight: normal;
 }
 
 @font-face {
   font-family: 'GT-Walsheim';
-  src: local('GT-Walsheim-Bold'), url(../assets/fonts/GT-Walsheim-Bold.woff) format('woff');
+  src: local('GT-Walsheim-Bold'),
+    url(../assets/fonts/GT-Walsheim-Bold.woff) format('woff');
   font-weight: bold;
 }
 
 @font-face {
   font-family: 'GT-Walsheim';
-  src: local('GT-Walsheim-Light'), url(../assets/fonts/GT-Walsheim-Light.woff) format('woff');
+  src: local('GT-Walsheim-Light'),
+    url(../assets/fonts/GT-Walsheim-Light.woff) format('woff');
   font-weight: lighter;
 }
 
@@ -20,10 +23,32 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'GT-Walsheim';
-  background-color: gray
+  background-color: #26cac8;
 }
 
+.home {
+  &-header {
+    margin: 65px 101px 0;
+    text-align: right;
+  }
 
-.home-container {
-  margin: 40px 30px 30px 40px;
+  &-main-section {
+    margin: 108px 131px;
+
+    &-title {
+      color: white;
+      font-size: 48px;
+      letter-spacing: 1px;
+    }
+
+    &-button {
+      background-color: white;
+      border: 1px solid white;
+      border-radius: 8px;
+      color: #26cac8;
+      font-size: 18px;
+      letter-spacing: 1px;
+      padding: 20px 42px;
+    }
+  }
 }
