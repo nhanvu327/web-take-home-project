@@ -236,7 +236,7 @@ class ProjectForm extends React.Component {
             </Select>
             {isContractError && <ErrorField />}
           </FormControl>
-          <FormControl className={classes.formControl}>
+          <FormControl error={isLocationError} className={classes.formControl}>
             <AddressAutoComplete selectAddress={this.selectAddress} />
             {isLocationError && <ErrorField />}
           </FormControl>
