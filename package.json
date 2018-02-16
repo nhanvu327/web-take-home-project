@@ -17,7 +17,8 @@
     "react-router": "^4.2.0",
     "react-router-redux": "^5.0.0-alpha.8",
     "redux": "^3.7.2",
-    "uploadcare-widget": "^3.2.1"
+    "uploadcare-widget": "^3.2.1",
+    "uuid": "^3.2.1"
   },
   "devDependencies": {
     "react-scripts": "1.0.17"

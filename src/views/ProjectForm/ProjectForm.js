@@ -7,14 +7,18 @@ import { FormControl } from 'material-ui/Form';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 import { CircularProgress } from 'material-ui/Progress';
-import { addProject } from '../../util/api_calls/ProjectApiCalls';
+import uuid from 'uuid/v1';
+import { addProject as addProjectAPI } from '../../util/api_calls/ProjectApiCalls';
 import ErrorField from './ErrorField';
 import { AddressAutoComplete } from '../';
 import {
   openUploadCareDialog,
   getUnixTime,
   getFileNames,
-  getContractValues
+  getContractValues,
+  checkDescriptionValid,
+  checkLocationValid,
+  checkImagesValid
 } from '../../util/helpers/ProjectHelpers';
 import { PROJECT_TYPES, CONTRACT_VALUES } from '../../util/Constants';
 import './ProjectForm.css';
@@ -67,6 +71,7 @@ class ProjectForm extends React.Component {
     isProjectTypeError: false,
     isDescriptionError: false,
     isContractError: false,
+    isImagesError: false,
     isSubmitting: false
   };
 
@@ -86,15 +91,10 @@ class ProjectForm extends React.Component {
     });
   };
 
-  setError = name => {
-    this.setState({
-      [name]: true
-    });
-  };
-
   onSubmit = e => {
     e.preventDefault();
     const data = {
+      id: uuid(),
       suburb: this.state.location.suburb,
       state: this.state.location.state,
       location_place_id: this.state.location.place_id,
@@ -107,23 +107,35 @@ class ProjectForm extends React.Component {
       files: getFileNames(this.state.images),
       default_image_url: this.state.images[0],
       project_type_id: this.state.project_type_id,
+      contract_id: this.state.contract_value_id,
       min_contract_value: getContractValues(
         this.state.contract_value_id,
         'min'
       ),
       max_contract_value: getContractValues(this.state.contract_value_id, 'max')
     };
-    this.setState({
-      isSubmitting: true
-    });
-    addProject(data, () => {
-      this.props.toggleModal();
-      this.props.addProject(data);
-    }, () => {
+
+    const isDescriptionValid = checkDescriptionValid(data.description, this);
+    const isLocationValid = checkLocationValid(this.state.location, this);
+    const isImagesValid = checkImagesValid(data.images, this);
+
+    if (isDescriptionValid && isLocationValid && isImagesValid) {
       this.setState({
-        isSubmitting: false
+        isSubmitting: true
       });
-    });
+      addProjectAPI(
+        data,
+        () => {
+          this.props.toggleModal();
+          this.props.addProject(data);
+        },
+        () => {
+          this.setState({
+            isSubmitting: false
+          });
+        }
+      );
+    }
   };
 
   render() {
@@ -225,10 +237,7 @@ class ProjectForm extends React.Component {
             {isContractError && <ErrorField />}
           </FormControl>
           <FormControl className={classes.formControl}>
-            <AddressAutoComplete
-              setError={this.setError}
-              selectAddress={this.selectAddress}
-            />
+            <AddressAutoComplete selectAddress={this.selectAddress} />
             {isLocationError && <ErrorField />}
           </FormControl>
           {isSubmitting ? (

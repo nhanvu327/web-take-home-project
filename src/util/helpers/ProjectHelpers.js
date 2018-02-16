@@ -8,7 +8,7 @@ import uploadcare from 'uploadcare-widget';
 //---------------------------------- Internal imports -------------------------------------
 //-----------------------------------------------------------------------------------------
 
-import { DEFAULT_UPLOADCARE_SETTINGS, CONTRACT_VALUES } from '../Constants';
+import { DEFAULT_UPLOADCARE_SETTINGS, CONTRACT_VALUES, PROJECT_TYPES } from '../Constants';
 
 //-----------------------------------------------------------------------------------------
 //------------- Open uploadcare dialog/modal and pass uploaded files to handler -----------
@@ -82,19 +82,52 @@ const getContractValues = (contractId, flag) => {
   return flag === 'min' ? contract.min : contract.max;
 };
 
-const checkLocationValid = ({suburb, state, latitude, longitude, formatted_address}) => {
-  if (!(suburb && suburb.length >= 2 && suburb.length <= 50)) return false;
-  if (!(state && state.length >= 2 && state.length <= 3)) return false;
-  if (!(latitude && !isNaN(latitude))) return false;
-  if (!(longitude && !isNaN(longitude))) return false;
-  if (!(formatted_address.length >= 1 && formatted_address.length <= 255)) return false;
-  return true;
-}
+const checkLocationValid = (
+  { suburb, state, latitude, longitude, formatted_address },
+  comp
+) => {
+  const isSuburbValid = suburb && suburb.length >= 2 && suburb.length <= 50;
+  const isStateValid = state && state.length >= 2 && state.length <= 3;
+  const isLatValid = latitude && !isNaN(latitude);
+  const isLngValid = longitude && !isNaN(longitude);
+  const isAddressValid =
+    formatted_address.length >= 1 && formatted_address.length <= 255;
+  const result =
+    isSuburbValid && isStateValid && isLatValid && isLngValid && isAddressValid;
+  comp.setState({
+    isLocationError: !result
+  });
+  return result;
+};
 
-const getSuggestionValue = (suggestion) => {
+const checkDescriptionValid = (value, comp) => {
+  const result =
+    typeof value === 'string' && value.length >= 10 && value.length <= 250;
+  comp.setState({
+    isDescriptionError: !result
+  });
+  return result;
+};
+
+const checkImagesValid = (arr, comp) => {
+  const result = arr.length > 0;
+  comp.setState({
+    isImagesError: !result
+  });
+  return result;
+};
+
+const getSuggestionValue = suggestion => {
   return suggestion.description;
-}
+};
 
+const getProjectNameById = (id) => {
+  return PROJECT_TYPES.find(project => project.id === id).name;
+};
+
+const getContractDescriptionById = id => {
+  return CONTRACT_VALUES.find(contract => contract.id === id).description;
+}
 
 export {
   openUploadCareDialog,
@@ -104,5 +137,9 @@ export {
   getFileNames,
   getContractValues,
   checkLocationValid,
-  getSuggestionValue
+  getSuggestionValue,
+  checkDescriptionValid,
+  checkImagesValid,
+  getProjectNameById,
+  getContractDescriptionById
 };

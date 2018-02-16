@@ -1,13 +1,11 @@
 import React from 'react';
 import Autosuggest from 'react-autosuggest';
-import Icon from 'material-ui/Icon';
 import SuggestionItem from './SuggestionItem';
 import SuggestionContainer from './SuggestionContainer';
 import SuggestionInput from './SuggestionInput';
 import {
   findSuburb,
   findState,
-  checkLocationValid,
   getSuggestionValue
 } from '../../util/helpers/ProjectHelpers';
 import './AddressAutoComplete.css';
@@ -67,11 +65,7 @@ class AddressAutoComplete extends React.Component {
             state: findState(results[0].address_components),
             status
           };
-          if (checkLocationValid(data)) {
-            this.props.selectAddress(data); // to do
-          } else {
-            this.props.setError('isLocationError');
-          }
+          this.props.selectAddress(data);
         }
       }
     );

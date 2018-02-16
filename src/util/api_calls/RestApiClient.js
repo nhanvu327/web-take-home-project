@@ -61,12 +61,12 @@ const RestApiClient = ({
     }
     // Success callback.
     else {
-      successCallback(response);
+      successCallback();
     }
   })
   .catch((e) => {
     // Handle an API logic error.
-    catchCallback(e);
+    catchCallback();
   })
 };
 
