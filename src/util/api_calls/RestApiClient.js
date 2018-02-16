@@ -7,7 +7,7 @@ import {
   buildWorkyardHeaders,
   generateUrl,
   generateRequest,
-} from '/../helpers/MiddlewareHelpers';
+} from '../helpers/MiddlewareHelpers';
 
 import { PRIVACY_TYPE_AUTH } from '../Constants';
 

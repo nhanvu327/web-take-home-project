@@ -2,7 +2,6 @@ import {
   BASIC_API_TOKEN,
   BEARER_API_TOKEN,
   PRIVACY_TYPE_AUTH,
-  PRIVACY_TYPE_BASIC,
   API_URL
 } from '../Constants';
 
@@ -22,7 +21,7 @@ const defaultCatchCallback = err => {
 
 
 const getWorkyardAgentHeader = () => {
-  return ""
+  return navigator.userAgent;
 }
 
 

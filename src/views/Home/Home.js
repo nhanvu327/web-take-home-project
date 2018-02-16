@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 
 import './Home.css';
 import { Modal, ProjectForm } from '../';
+import { addProjectAction } from '../../actions/ProjectActions';
 import WorkyardLogo from '../../assets/images/workyard-logo.svg';
 
 //-----------------------------------------------------------------------------------------
@@ -57,7 +58,7 @@ class Home extends Component {
           <button className="home-main-section-button" onClick={this.toggleModal}>Create Project</button>
         </div>
         <Modal toggleModal={this.toggleModal} isModalOpened={this.state.isModalOpened}>
-          <ProjectForm />
+          <ProjectForm toggleModal={this.toggleModal} addProject={this.props.addProject} />
         </Modal>
       </div>
     );
@@ -71,14 +72,15 @@ class Home extends Component {
 
 
   const mapStateToProps = (state, ownProps) => {
-
     return {
+      projects: state.Project.projects
     }
   }
 
 
   const mapDispatchToProps = dispatch => {
     return {
+      addProject: data => dispatch(addProjectAction(data)),
     }
   }
 

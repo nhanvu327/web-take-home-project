@@ -8,7 +8,7 @@ import uploadcare from 'uploadcare-widget';
 //---------------------------------- Internal imports -------------------------------------
 //-----------------------------------------------------------------------------------------
 
-import { DEFAULT_UPLOADCARE_SETTINGS } from '../Constants';
+import { DEFAULT_UPLOADCARE_SETTINGS, CONTRACT_VALUES } from '../Constants';
 
 //-----------------------------------------------------------------------------------------
 //------------- Open uploadcare dialog/modal and pass uploaded files to handler -----------
@@ -66,7 +66,43 @@ const findState = components => {
   const state = components.find(component =>
     component.types.includes('administrative_area_level_1')
   );
-  return state ? state.long_name : '';
+  return state ? state.short_name : '';
 };
 
-export { openUploadCareDialog, findSuburb, findState };
+const getUnixTime = () => {
+  return (new Date().getTime() / 1000) | 0;
+};
+
+const getFileNames = arr => {
+  return arr.map(item => item.split('/')[3]);
+};
+
+const getContractValues = (contractId, flag) => {
+  const contract = CONTRACT_VALUES.find(c => c.id === contractId);
+  return flag === 'min' ? contract.min : contract.max;
+};
+
+const checkLocationValid = ({suburb, state, latitude, longitude, formatted_address}) => {
+  if (!(suburb && suburb.length >= 2 && suburb.length <= 50)) return false;
+  if (!(state && state.length >= 2 && state.length <= 3)) return false;
+  if (!(latitude && !isNaN(latitude))) return false;
+  if (!(longitude && !isNaN(longitude))) return false;
+  if (!(formatted_address.length >= 1 && formatted_address.length <= 255)) return false;
+  return true;
+}
+
+const getSuggestionValue = (suggestion) => {
+  return suggestion.description;
+}
+
+
+export {
+  openUploadCareDialog,
+  findSuburb,
+  findState,
+  getUnixTime,
+  getFileNames,
+  getContractValues,
+  checkLocationValid,
+  getSuggestionValue
+};

@@ -1,10 +1,12 @@
-const exampleAction = payload => {
+import { ADD_PROJECT } from '../util/Constants';
+
+const addProjectAction = payload => {
   return {
-    type: "exampleAction",
+    type: ADD_PROJECT,
     payload
   }
 }
 
 export {
-  exampleAction
-}
+  addProjectAction
+};

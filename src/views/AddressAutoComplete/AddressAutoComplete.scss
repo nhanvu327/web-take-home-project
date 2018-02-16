@@ -12,6 +12,13 @@
     padding: 0;
   }
 
+  &__suggestions {
+    &__wrapper {
+      position: absolute;
+      z-index: 2;
+    }
+  }
+
   &__suggestion {
     list-style-type: none;
   }
