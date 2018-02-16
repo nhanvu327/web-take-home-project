@@ -36,6 +36,10 @@ body {
 
   &-container {
     margin: 65px 101px;
+
+    @media screen and (max-width: 768px) {
+      margin: 50px 30px;
+    }
   }
 
   &-header {
@@ -48,6 +52,10 @@ body {
       color: white;
       font-size: 48px;
       letter-spacing: 1px;
+
+      @media screen and (max-width: 768px) {
+        font-size: 30px;
+      }
     }
 
     &-button {
@@ -59,13 +67,21 @@ body {
       font-size: 18px;
       letter-spacing: 1px;
       padding: 20px 42px;
+
+      @media screen and (max-width: 768px) {
+        padding: 10px 21px;
+      }
     }
   }
 
   &-card-section {
     margin-top: 108px;
     display: flex;
-    flex-wrap: wrap;  
+    flex-wrap: wrap;
+
+    @media screen and (max-width: 768px) {
+      margin-top: 50px;
+    }
   }
 
 }
